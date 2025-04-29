@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Welcome to your Dashboard, {{ username }}!</h2>
+  <p><a href="/logout">Logout</a></p>
+
+  <!-- Form to upload bulk emails -->
+  <h3>Upload Email List</h3>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="email_file" accept=".csv" required><br><br>
+    <input type="submit" value="Upload and Verify">
+  </form>
+
+  {% if emails %}
+    <h3>Verification Results</h3>
+    <table border="1">
+      <tr><th>Email</th><th>Status</th></tr>
+      {% for email, status in emails %}
+        <tr><td>{{ email }}</td><td>{{ status }}</td></tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>
